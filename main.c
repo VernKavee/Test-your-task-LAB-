@@ -6,40 +6,10 @@
 #include "Queue.h"
 
 int main(int argc , char **argv){
-  //For Node Queue.
-  NodePtr headPtr=NULL;
-  NodePtr tailPtr=NULL;
-
-  enqueue(&headPtr, &tailPtr, 5);
-  enqueue(&headPtr, &tailPtr, 9);
-  enqueue(&headPtr, &tailPtr, 7);
-  enqueue(&headPtr, &tailPtr, 82);
-  int a = dequeue(&headPtr, &tailPtr);
-  printf("%d\n", a);
-  a = dequeue(&headPtr, &tailPtr);
-  printf("%d\n", a);
-  a = dequeue(&headPtr, &tailPtr);
-  printf("%d\n", a);
-  a = dequeue(&headPtr, &tailPtr);
-  printf("%d\n", a);
-
-
-  //For struct Queue.
   Queue q;
   q.headPtr=NULL;
   q.tailPtr=NULL;
   q.size=0;
-
-  enqueue_struct(&q, 7);
-  int b = dequeue_struct(&q);
-  printf("struct %d\n",b);
-  enqueue_struct(&q, 14);
-  enqueue_struct(&q, 21);
-  b = dequeue_struct(&q);
-  printf("struct %d\n",b);
-  b = dequeue_struct(&q);
-  printf("struct %d\n",b);
-
 
   //task today.
   int i,x;
@@ -49,7 +19,7 @@ int main(int argc , char **argv){
       if(x != 0) printf("dequeing %d\n", x);
     }
     else{
-      enqueue_struct(&q, atoi(argv[i]));       
+      enqueue_struct(&q, atoi(argv[i], atoi(argv[i++])));       
     }
   }
   return 0;

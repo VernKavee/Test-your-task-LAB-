@@ -7,45 +7,55 @@
 #ifndef Node_h
 #define Node_h
 
-struct node
-{
-    int data;
-    struct node *nextPtr;
-};
+typedef struct node{
+  struct node* next;
+  int order_number;
+  int qty;
+}order;
 
-typedef struct node Node;
-typedef struct node* NodePtr;
+typedef struct order Node;
+typedef struct order* NodePtr;
 
+typedef struct Queue{
+  NodePtr head, tail;
+  int size;
+}queue;
 
-void enqueue(NodePtr * head, NodePtr* tail, int x){
-  NodePtr new_node = (NodePtr) malloc(sizeof(Node));
-  if(new_node){
-    new_node->data = x;
-    new_node->nextPtr = NULL;
+void enqueue_struct(queue* q, int x, int y){
+  Node *new_node = (Node*) malloc(sizeof(Node));
+  if(new_node){ 
+    new_node->order_number = x;
+    new_node->qty = y;
+    new_node->next = NULL;
 
-    if(*head == NULL) *head = new_node;
-    else (*tail)->nextPtr = new_node;
-    
-    *tail = new_node;
+    if(q->size == 0 ) q->head = new_node;
+    else q->tail->next = new_node;
+
+    q->tail = new_node;
+    q->size++;
   }
 }
 
 
-int dequeue(NodePtr* head, NodePtr* tail){
-  NodePtr t = *head;
-
+int dequeue_struct(queue *q){
+  NodePtr t = q->head;
   if(t){
+    switch(t->order_number){
+      
+    }
     int value = t->data;
-    *head = t->nextPtr;
+    q->headPtr = t->nextPtr;
 
-    if(*head == NULL) *tail = NULL;//if it's the last queue.
+    if(q->size == 1) q->tailPtr = NULL;//if it's the last queue.
 
+    q->size--;
     free(t);
     return value;
   }
 
-  printf("Empty queue");
+  printf("Empty queue\n");
   return 0;
 }
+
 
 #endif
