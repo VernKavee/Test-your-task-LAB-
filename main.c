@@ -30,7 +30,7 @@ int main(int argc , char **argv){
           x = x - pay;
           if(x > 0) printf("Remaining amount to pay: %d Baht\n", x);
           else ("Thank you.\n");
-        }while(x >= 0);
+        }while(x > 0);
 
         count++;
       }
@@ -38,7 +38,8 @@ int main(int argc , char **argv){
 
     else{
       if(atoi(argv[i]) > 0 && atoi(argv[i]) <= 3){
-        enqueue_struct(&q, atoi(argv[i]), atoi(argv[i]));
+        printf("My order is %d\n", atoi(argv[i]));
+        enqueue_struct(&q, atoi(argv[i]), atoi(argv[i+1]));
         i++;
       }
       else{
@@ -49,10 +50,10 @@ int main(int argc , char **argv){
   }
   
 
-  printf("==================================================\n");
+  printf("========================================\n");
 
-  if(q.size > 1) printf("There are %d customer left in the queue", q.size);
-  else printf("There are %d customers left in the queue", q.size);
+  if(q.size > 1) printf("There are %d customer left in the queue\n", q.size);
+  else printf("There are %d customers left in the queue\n", q.size);
 
   return 0;
 }
