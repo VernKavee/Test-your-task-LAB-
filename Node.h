@@ -39,23 +39,43 @@ void enqueue_struct(queue* q, int x, int y){
 
 int dequeue_struct(queue *q){
   NodePtr t = q->head;
+
   if(t){
-    switch(t->order_number){
-      
-    }
-    int value = t->data;
+    int value;
     q->headPtr = t->nextPtr;
 
-    if(q->size == 1) q->tailPtr = NULL;//if it's the last queue.
+    switch(t->order_number){
+      case 1://Ramen 100 Baht.
+        value = 100*(t->qty);
+        if(t->qty > 1 ) printf("%d Bowl of Ramen", t->qty);
+        else printf("%d Bowls of Ramen", t->qty);
+        break;
 
+      case 2://Somtum 20 Baht.
+        value = 20*(t->qty);
+        if(t->qty > 1 ) printf("%d Dish of Somtum", t->qty);
+        else printf("%d Dishes of Somtum", t->qty);
+        break;
+
+      case 3://Fried chicken 50 Baht.
+        value = 50*(t->qty);
+        if(t->qty > 1 ) printf ("%d Bucket of Fried chicken", t->qty);
+        else printf ("%d Buckets of Fried chicken", t->qty);
+        break;
+
+      default:
+        printf("ERROR ON DAFAULT CASE!!!\n");
+        break;
+    }
+
+    if(q->size == 1) q->tailPtr = NULL;//if it's the last queue.
     q->size--;
     free(t);
     return value;
   }
 
-  printf("Empty queue\n");
+  printf("The Queue is Empty.\n");
   return 0;
 }
-
 
 #endif
