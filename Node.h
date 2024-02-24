@@ -7,16 +7,16 @@
 #ifndef Node_h
 #define Node_h
 
-typedef struct node{
-  struct node* next;
+struct order{
+  struct order* next;
   int order_number;
   int qty;
-}order;
+};
 
 typedef struct order Node;
 typedef struct order* NodePtr;
 
-typedef struct Queue{
+typedef struct {
   NodePtr head, tail;
   int size;
 }queue;
@@ -42,25 +42,25 @@ int dequeue_struct(queue *q){
 
   if(t){
     int value;
-    q->headPtr = t->nextPtr;
+    q->head = t->next;
 
     switch(t->order_number){
       case 1://Ramen 100 Baht.
         value = 100*(t->qty);
-        if(t->qty > 1 ) printf("%d Bowl of Ramen", t->qty);
-        else printf("%d Bowls of Ramen", t->qty);
+        if(t->qty > 1 ) printf("%d Bowl of Ramen\n", t->qty);
+        else printf("%d Bowls of Ramen\n", t->qty);
         break;
 
       case 2://Somtum 20 Baht.
         value = 20*(t->qty);
-        if(t->qty > 1 ) printf("%d Dish of Somtum", t->qty);
-        else printf("%d Dishes of Somtum", t->qty);
+        if(t->qty > 1 ) printf("%d Dish of Somtum\n", t->qty);
+        else printf("%d Dishes of Somtum\n", t->qty);
         break;
 
       case 3://Fried chicken 50 Baht.
         value = 50*(t->qty);
-        if(t->qty > 1 ) printf ("%d Bucket of Fried chicken", t->qty);
-        else printf ("%d Buckets of Fried chicken", t->qty);
+        if(t->qty > 1 ) printf ("%d Bucket of Fried chicken\n", t->qty);
+        else printf ("%d Buckets of Fried chicken\n", t->qty);
         break;
 
       default:
@@ -68,7 +68,7 @@ int dequeue_struct(queue *q){
         break;
     }
 
-    if(q->size == 1) q->tailPtr = NULL;//if it's the last queue.
+    if(q->size == 1) q->tail = NULL;//if it's the last queue.
     q->size--;
     free(t);
     return value;
